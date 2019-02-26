@@ -14,7 +14,7 @@ public class FitnessCalc {
 		int fitness = GoogleRequestJsoup.getGoogleHits(new String(individual.getGene()));
 
 //		int fitness = calculate(new String(individual.getGene()),"dasisteintest");
-		fitness = sol - fitness;
+//		fitness = sol - fitness;
 		individual.setFittness(fitness);
 
 		return fitness;
