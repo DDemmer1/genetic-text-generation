@@ -1,6 +1,8 @@
 package geneticGoogleQuery;
 
 
+import lombok.SneakyThrows;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 public class EvolutionHandler {

@@ -1,10 +1,12 @@
 package geneticGoogleQuery;
 
 public class Application {
+    public static int requests =0;
 
     public static void main(String args[]) {
 
-        int generations = 500;
+        int generations = 500000;
+
 
         EvolutionHandler evolution = new EvolutionHandler();
         Population population = new Population(true);

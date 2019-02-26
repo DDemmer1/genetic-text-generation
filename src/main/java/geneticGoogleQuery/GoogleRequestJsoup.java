@@ -1,18 +1,23 @@
 package geneticGoogleQuery;
 
 import lombok.SneakyThrows;
+import lombok.extern.log4j.Log4j2;
+import org.jsoup.HttpStatusException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
 public class GoogleRequestJsoup {
 
-    @SneakyThrows
     public static int getGoogleHits(String query){
+        try {
+
+
         String urlString = "https://www.google.com/search?hl=de&as_q=&as_epq=" +query;
 //        String urlString = "https://www.google.com/search?hl=de&q=" +query;
 
@@ -30,6 +35,18 @@ public class GoogleRequestJsoup {
         String hitsString = hits.text();
         String sub = hitsString.substring(0,hitsString.length()-20);
         sub = sub.replaceAll("\\D+", "");
+        Application.requests++;
+
         return Integer.parseInt(sub);
+
+        } catch (HttpStatusException e){
+            System.err.println("Google ban after " + Application.requests + " requests");
+            System.exit(0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return 0;
     }
 }
